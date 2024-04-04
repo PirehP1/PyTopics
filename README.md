@@ -1,6 +1,6 @@
 # Un texte pour des topics
 
-Auteur : Stéphane Lamassé
+Auteur : Stéphane Lamassé et le Pireh
 
 Ce script permet : 
 1. charger un corpus
