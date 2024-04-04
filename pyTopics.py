@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import pyLDAvis
 import pyLDAvis.gensim_models as gensimvis
-from gensim.corpora import Dictionary
+from gensim.corpora import Dictionary, MmCorpus
 from gensim.models import LdaModel
 from gensim.utils import tokenize as gensim_tokenize
 
@@ -89,9 +89,22 @@ def visualize_lda_model(lda_model, corpus, dictionary, output_path):
     pyLDAvis.save_html(vis_data, output_path)
 
 
+def save_corpus_and_dictionary(corpus, dictionary, corpus_file_path, dictionary_file_path):
+    """
+    Fonction pour enregistrer le corpus et le dictionnaire Gensim dans des fichiers distincts.
+    """
+    # Enregistrement du corpus
+    MmCorpus.serialize(corpus_file_path, corpus)
+
+    # Enregistrement du dictionnaire
+    dictionary.save(dictionary_file_path)
+
+
+
 def main():
     # Chemin vers le fichier CSV
-    csv_file_path = "indexTotalTabulaire.csv"
+    path = ""
+    csv_file_path = path + "indexTotalTabulaire.csv"
 
     # Lecture du fichier CSV en utilisant pandas avec la tabulation comme délimiteur
     df = pd.read_csv(csv_file_path, sep='\t')
@@ -117,7 +130,7 @@ def main():
 
 
     # Chargement des stopwords depuis un fichier
-    stopwords = load_stopwords("stopwords.txt")
+    stopwords = load_stopwords(path + "stopwords.txt")
 
     # Suppression des stopwords des segments tokenisés
     segments_df['segment'] = segments_df['segment'].apply(lambda x: remove_stopwords(x, stopwords))
@@ -127,6 +140,11 @@ def main():
     dictionary = Dictionary(tokenized_segments)
     corpus = [dictionary.doc2bow(segment) for segment in tokenized_segments]
     lda_model = train_lda_model(tokenized_segments,)
+
+
+    # On sauvegarde le corpus au format dédié par gensim 
+    save_corpus_and_dictionary(corpus, dictionary, path + "corpus.mm", path + "dictionary.dict")
+
 
     # Visualisation du modèle LDA et enregistrement de la visualisation dans un fichier HTML
     visualize_lda_model(lda_model, corpus, dictionary, "lda_visualization.html")
