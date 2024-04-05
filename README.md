@@ -20,7 +20,7 @@ Un tableau de plusieurs colonnes : lemme;pos
 - **save_corpus_and_dictionary** : Enregistre le corpus et le dictionnaire Gensim dans des fichiers distincts.
 
 
-Fonction Principale main : La fonction principale du script, main(), exécute le flux principal du programme. Elle effectue les étapes suivantes :
+La fonction principale du script, main(), exécute le flux principal du programme. Elle effectue les étapes suivantes :
 
 1. Lecture d'un fichier CSV contenant des données textuelles.
 2. Suppression des lignes contenant des termes spécifiques.
