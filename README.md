@@ -1,7 +1,7 @@
 
 ## Présentation du Script
 
-Ce script est un exemple d'implémentation d'un modèle de *Topics Modelling*  pour l'analyse de texte.
+Ce script est un exemple d'implémentation d'un modèle de *Topics* LDA  pour l'analyse de texte.
 
 **Import de Bibliothèques** : Le script commence par l'importation des bibliothèques nécessaires telles que os, pandas, pyLDAvis, gensim
 
@@ -25,7 +25,7 @@ La fonction principale du script, main(), exécute le flux principal du programm
 1. Lecture d'un fichier CSV contenant des données textuelles.
 2. Suppression des lignes contenant des termes spécifiques.
 3. Création de segments à partir des données.
-4. Chargement des stopwords depuis un fichier et suppression des stopwords des segments tokenisés.
+4. Chargement des *stopwords* depuis un fichier et suppression des *stopwords* des segments tokenisés.
 5. Entraînement d'un modèle LDA sur les segments tokenisés.
 6. Sauvegarde du corpus et du dictionnaire Gensim.
 7. Visualisation du modèle LDA et enregistrement de la visualisation dans un fichier HTML.
