@@ -58,8 +58,11 @@ def train_lda_model(tokenized_segments, num_topics=5):
     # Création du corpus
     corpus = [dictionary.doc2bow(segment) for segment in tokenized_segments]
 
+    # Supprimer les hapax du corpus
+    filtered_corpus = remove_hapax(corpus)
+
     # Entraînement du modèle LDA
-    lda_model = LdaModel(corpus, num_topics=num_topics, id2word=dictionary)
+    lda_model = LdaModel(filtered_corpus, num_topics=num_topics, id2word=dictionary)
 
     return lda_model
 
@@ -87,6 +90,29 @@ def visualize_lda_model(lda_model, corpus, dictionary, output_path):
     """
     vis_data = gensimvis.prepare(lda_model, corpus, dictionary)
     pyLDAvis.save_html(vis_data, output_path)
+
+
+
+def remove_hapax(corpus):
+    """
+    Fonction pour supprimer les hapax du corpus.
+    """
+    # Compter la fréquence de chaque mot dans le corpus
+    word_frequency = {}
+    for document in corpus:
+        for word_id, frequency in document:
+            if word_id in word_frequency:
+                word_frequency[word_id] += frequency
+            else:
+                word_frequency[word_id] = frequency
+    
+    # Identifier les hapax
+    hapax_ids = [word_id for word_id, frequency in word_frequency.items() if frequency == 1]
+    
+    # Supprimer les hapax du corpus
+    filtered_corpus = [[(word_id, frequency) for word_id, frequency in document if word_id not in hapax_ids] for document in corpus]
+    
+    return filtered_corpus
 
 
 def save_corpus_and_dictionary(corpus, dictionary, corpus_file_path, dictionary_file_path):
