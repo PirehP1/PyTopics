@@ -5,16 +5,19 @@ Ce script est un exemple d'implémentation d'un modèle de *Topics Modelling*  p
 
 **Import de Bibliothèques** : Le script commence par l'importation des bibliothèques nécessaires telles que os, pandas, pyLDAvis, gensim
 
+## Structure des données initiales 
+Un tableau de plusieurs colonnes : lemme;pos
+
 ##  Fonctions :
 
-**remove_rows_containing_strings** : Supprime les lignes contenant des chaînes de caractères spécifiques dans une colonne donnée d'un DataFrame.
-**tokenize_corpus** : Tokenise un corpus de texte en utilisant Gensim.
-**create_segments** : Crée des segments de tailles identiques à partir des données d'un DataFrame.
-**train_lda_model** : Entraîne un modèle de sujets LDA sur des segments tokenisés.
-**remove_stopwords** : Supprime les stopwords d'un texte donné.
-**load_stopwords** : Charge une liste de stopwords à partir d'un fichier.
-**visualize_lda_model** : Visualise un modèle LDA avec PyLDAvis et enregistre la visualisation dans un fichier HTML.
-**save_corpus_and_dictionary** : Enregistre le corpus et le dictionnaire Gensim dans des fichiers distincts.
+- **remove_rows_containing_strings** : Supprime les lignes contenant des chaînes de caractères spécifiques dans une colonne donnée d'un DataFrame.
+- **tokenize_corpus** : Tokenise un corpus de texte en utilisant Gensim.
+- **create_segments** : Crée des segments de tailles identiques à partir des données d'un DataFrame.
+- **train_lda_model** : Entraîne un modèle de sujets LDA sur des segments tokenisés.
+- **remove_stopwords** : Supprime les stopwords d'un texte donné.
+- **load_stopwords** : Charge une liste de stopwords à partir d'un fichier.
+- **visualize_lda_model** : Visualise un modèle LDA avec PyLDAvis et enregistre la visualisation dans un fichier HTML.
+- **save_corpus_and_dictionary** : Enregistre le corpus et le dictionnaire Gensim dans des fichiers distincts.
 
 
 Fonction Principale main : La fonction principale du script, main(), exécute le flux principal du programme. Elle effectue les étapes suivantes :
